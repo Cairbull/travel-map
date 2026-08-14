@@ -10,4 +10,4 @@ Artisan::command('inspire', function () {
 
 // Update cache data points every ten minutes
 Schedule::command('travel:refresh')
-    ->everyHour();
+    ->hourly();
