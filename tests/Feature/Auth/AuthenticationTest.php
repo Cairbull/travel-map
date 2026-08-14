@@ -7,9 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Laravel\Fortify\Features;
-/* @chisel-passkeys */
 use Laravel\Passkeys\Contracts\PasskeyLoginResponse;
-/* @end-chisel-passkeys */
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -36,7 +34,6 @@ class AuthenticationTest extends TestCase
         $response->assertRedirect(route('dashboard'));
     }
 
-    /* @chisel-passkeys */
     public function test_passkey_login_response_redirects_to_the_current_team_dashboard(): void
     {
         $user = User::factory()->create();
@@ -54,7 +51,6 @@ class AuthenticationTest extends TestCase
             $jsonResponse->getData()->redirect,
         );
     }
-    /* @end-chisel-passkeys */
 
     public function test_users_with_two_factor_enabled_are_redirected_to_two_factor_challenge()
     {

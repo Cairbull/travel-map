@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use App\Models\TravelLocation;
+use App\Services\TravelService;
 use Illuminate\Http\Request;
 
 class TravelMapController extends Controller
 {
+   protected TravelService $travelService;
+
+   public function __construct(TravelService $travelService)
+   {
+      $this->travelService = $travelService;
+   }
+
    public function getData()
    {
       return TravelLocation::getMapPoints();
@@ -16,7 +23,8 @@ class TravelMapController extends Controller
 
    public function getFilterData(Request $request)
    {
-       $year = $request->query('year');
-      return TravelLocation::getFilterData($year);
+      $year = $request->query('year');
+      $points = $this->travelService->cacheMapPoints($year);
+      return response()->json($points);
    }
 }
