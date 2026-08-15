@@ -11,3 +11,7 @@ Artisan::command('inspire', function () {
 // Update cache data points every ten minutes
 Schedule::command('travel:refresh')
     ->hourly();
+
+// Sync posts table from Joomla with Laravel
+Schedule::command('travel:sync')
+    ->everyThirtyMinutes();

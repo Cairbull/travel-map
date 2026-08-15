@@ -10,6 +10,7 @@ class RefreshTravelCache extends Command
 {
     protected $signature = 'travel:refresh';
     protected $description = 'Refresh travel points';
+    
     /**
      * Execute the console command.
      */
