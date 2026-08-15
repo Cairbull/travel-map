@@ -10,6 +10,8 @@
 - MapLibre GL
 - Joomla API
 - MySQL
+- Redis
+- Scheduler
 
 ## Возможности
 
@@ -19,15 +21,26 @@
 - фильтрация по годам
 - получение данных из Joomla через Laravel API
 - динамическая загрузка точек
+- Синхронизация Joomla таблицы БД с таблицой БД Laravel
+- Кеширование данных для оптимизации запросов
+- Планировщик, который выполняет кеширование каждый час и проверяет изменения в данных для возможной синхронизации
 
 ## Архитектура
 
-Joomla
-↓
+Joomla DB
+    │
+    │ Scheduler
+    ↓
+travel:sync
+    ↓
+Laravel DB
+    ↓
+Redis Cache
+    ↓
 Laravel API
-↓
-Vue
-↓
+    ↓
+Vue.js
+    ↓
 MapLibre GL
 
 ## Описание логики работы приложения
@@ -51,6 +64,8 @@ An interactive travel map built with Laravel, Vue, and MapLibre GL.
 - MapLibre GL
 - Joomla API
 - MySQL
+- Redis
+- Scheduler
 
 ## Features
 
@@ -60,15 +75,25 @@ An interactive travel map built with Laravel, Vue, and MapLibre GL.
 - Filtering by year
 - Data retrieval from Joomla via Laravel API
 - Dynamic loading of map points
+- Data caching to optimize queries
+- A scheduler that performs caching every hour and tracks data changes for potential synchronization.
 
 ## Architecture
 
-Joomla
-↓
+Joomla DB
+    │
+    │ Scheduler
+    ↓
+travel:sync
+    ↓
+Laravel DB
+    ↓
+Redis Cache
+    ↓
 Laravel API
-↓
-Vue
-↓
+    ↓
+Vue.js
+    ↓
 MapLibre GL
 
 ## Application Logic
