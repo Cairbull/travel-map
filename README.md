@@ -31,8 +31,8 @@ Joomla DB
     │
     │ Scheduler
     ↓
-travel:sync
-    ↓
+Synchronization
+    ↓ CRUD synchronization
 Laravel DB
     ↓
 Redis Cache
@@ -49,7 +49,12 @@ MapLibre GL
 
 На фронтенде данные динамически обрабатываются во **Vue.js** и отображаются на интерактивной карте с использованием **MapLibre GL**. Для каждой записи создаётся кастомный маркер с изображением, а при нажатии открывается попап с информацией о путешествии и ссылкой на соответствующую статью.
 
+Данные кэшируются посредством **Redis** и таким образом снижают количество загружаемого трафика при загрузке карты у пользователя
+
 Также реализован **фильтр путешествий по годам**. Можно выбрать нужный год, после чего **Laravel API** запрашивает из базы только соответствующие записи, а карта обновляет набор отображаемых маркеров без перезагрузки страницы.
+
+С помощью планировщика задач производится, как очистка кэша для актуализации данных так и синхронизация данных таблицы **Laravel** с таблицей Joomla.
+Сделано это для того, чтобы данные тянулись напрямую, а не с Joomla. Тут буквально реализован принцип **CRUD**, когда новые данные создаются, существующие обновляются, а неактуальные удаляются.
 
 
 # Interactive travel map
@@ -84,8 +89,8 @@ Joomla DB
     │
     │ Scheduler
     ↓
-travel:sync
-    ↓
+Synchronization
+    ↓ CRUD synchronization
 Laravel DB
     ↓
 Redis Cache
@@ -102,5 +107,10 @@ To create an interactive map, I developed a separate application using **Laravel
 
 On the frontend, the data is dynamically processed via Vue.js and displayed on an interactive map using **MapLibre GL**. A custom marker featuring an image is created for each entry; clicking a marker opens a popup containing trip details and a link to the corresponding article.
 
+Data is cached using **Redis**, thereby reducing the amount of traffic downloaded when the user loads the map.
+
 A **year-based filter** has also been implemented. Users can select a specific year, prompting the Laravel API to fetch only the relevant records from the database, while the map updates the displayed markers without requiring a page reload.
+
+The task scheduler handles both cache clearing—to ensure data is up to date—and the synchronization of data between the **Laravel** table and the **Joomla** table.
+This setup ensures that data is retrieved directly rather than from Joomla. It essentially implements the **CRUD** principle: new data is created, existing data is updated, and outdated data is deleted.
 
