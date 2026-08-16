@@ -36,15 +36,17 @@ const getYear = (date) => {
 
 /* Создание маркера */
 const createMarker = (
-  coordPlace,
   titleContent,
   aliasContent,
   introText,
   publishDate,
   previewImage,
+  country,
+  city,
+  coordinates
 ) => {
   //т.к. данные берутся из полей Joomla, то через регулярку достаем путь к картинке и координаты, т.к. они там массивом, а нам нужно разбить на долготу и широту
-  const foundCoord = coordPlace.match(coordRegex);
+  const foundCoord = coordinates.match(coordRegex);
   const foundImage = previewImage.match(imageRegex);
 
   if (foundCoord != null) {
@@ -99,12 +101,14 @@ const loadPoints = async (url) => {
 
   points.forEach((point) => {
     createMarker(
-      point.value,
       point.title,
       point.alias,
       point.introtext,
       point.publish_up,
       point.images,
+      point.country,
+      point.city,
+      point.coordinates
     );
   });
 };

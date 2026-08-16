@@ -11,9 +11,11 @@ class TravelPosts extends Model
         'title',
         'alias',
         'introtext',
-        'value',
+         'publish_up',
         'images',
-        'publish_up',
+        'country',
+        'city',
+        'coordinates',
         'joomla_modified',
     ];
 
