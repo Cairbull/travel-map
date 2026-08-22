@@ -15,6 +15,15 @@ class TravelSyncTest extends TestCase
 {
     use RefreshDatabase;
 
+    private $service;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->service = new TravelSyncService;
+    }
+
     /* Динамическое создание данных в таблице Joomla */
     private function joomlaPost(int $id, string $title, string $alias, string $introtext, string $country, string $city, string $coordinates, string $modified = '2026-08-20 10:00:00'): object
     {
@@ -30,47 +39,37 @@ class TravelSyncTest extends TestCase
             'coordinates' => $coordinates,
             'modified' => $modified,
         ];
-
     }
-    
+
 
     /* Метод синхронизации таблиц */
     private function syncTable(object $postsJoomla)
     {
-        $service = new TravelSyncService;
-        $result = $service->sync($postsJoomla);
+        $result = $this->service->sync($postsJoomla);
         return $result;
     }
 
     /* Тестирование на создание новой строки в таблице */
     public function test_sync_creates_new_post(): void
     {
-        $postsJoomla = collect([
-            (object)[
-                'id' => 100,
-                'title' => 'Тестовый пост',
-                'alias' => 'test-post',
-                'introtext' => 'Текст тестового поста',
-                'publish_up' => '2026-08-17 10:00:00',
-                'images' => null,
-                'country' => 'Непал',
-                'city' => 'Катманду',
-                'coordinates' => '27.714955,85.290351',
-                'modified' => '2026-08-17 10:00:00',
-            ],
+        $post = TravelPosts::factory()->create([
+            'joomla_id' => 100,
+            'joomla_modified' => '2026-08-17 11:00:00',
         ]);
 
-        $service = new TravelSyncService;
+        $postsJoomla = collect([
+            $this->joomlaPost(100, $post->title, $post->alias, $post->introtext, $post->country, $post->city, "{$post->coordinates}", '2026-08-17 11:00:00')
+        ]);
 
-        $service->sync($postsJoomla);
-        
+        $this->service->sync($postsJoomla);
+
         $this->assertDatabaseHas('travel_posts', [
             'joomla_id' => 100,
-            'title' => 'Тестовый пост',
-            'country' => 'Непал',
-            'city' => 'Катманду',
-            'coordinates' => '27.714955,85.290351',
-            'joomla_modified' => '2026-08-17 10:00:00',
+            'title' => $post->title,
+            'country' => $post->country,
+            'city' => $post->city,
+            'coordinates' => $post->coordinates,
+            'joomla_modified' => '2026-08-17 11:00:00',
         ]);
 
         $this->assertDatabaseCount('travel_posts', 1);

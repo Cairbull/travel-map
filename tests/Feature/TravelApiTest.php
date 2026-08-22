@@ -10,25 +10,33 @@ class TravelApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    private $post;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->post = TravelPosts::factory()->create();
+    }
+
     /* Тестирование метода вывода всех точек на карте */
     public function test_travel_map_return_all_points(): void
     {
-        $post = TravelPosts::factory()->create();
         TravelPosts::factory()->createMany([
             [
                 'joomla_id' => 100,
                 'title' => 'Пост про Непал',
-                'country' => $post->country,
-                'city' => $post->city,
-                'coordinates' => $post->coordinates,
+                'country' => $this->post->country,
+                'city' => $this->post->city,
+                'coordinates' => $this->post->coordinates,
                 'publish_up' => '2026-05-25 07:18:21',
             ],
             [
                 'joomla_id' => 200,
                 'title' => 'Пост про Вьетнам',
-                'country' => $post->country,
-                'city' => $post->city,
-                'coordinates' => $post->coordinates,
+                'country' => $this->post->country,
+                'city' => $this->post->city,
+                'coordinates' => $this->post->coordinates,
                 'publish_up' => '2025-03-10 10:00:00',
             ],
 
@@ -50,30 +58,29 @@ class TravelApiTest extends TestCase
     /* Тестирование метода фильтра постов по годам */
     public function test_travel_map_filter_years(): void
     {
-        $post = TravelPosts::factory()->create();
         TravelPosts::factory()->createMany([
             [
                 'joomla_id' => 100,
                 'title' => 'Пост про Непал 2026',
-                'country' => $post->country,
-                'city' => $post->city,
-                'coordinates' => $post->coordinates,
+                'country' => $this->post->country,
+                'city' => $this->post->city,
+                'coordinates' => $this->post->coordinates,
                 'publish_up' => '2026-05-25 07:18:21',
             ],
             [
                 'joomla_id' => 200,
                 'title' => 'Пост про Вьетнам 2026',
-                'country' => $post->country,
-                'city' => $post->city,
-                'coordinates' => $post->coordinates,
+                'country' => $this->post->country,
+                'city' => $this->post->city,
+                'coordinates' => $this->post->coordinates,
                 'publish_up' => '2026-08-10 10:00:00',
             ],
             [
                 'joomla_id' => 300,
                 'title' => 'Пост про Францию 2025',
-                'country' => $post->country,
-                'city' => $post->city,
-                'coordinates' => $post->coordinates,
+                'country' => $this->post->country,
+                'city' => $this->post->city,
+                'coordinates' => $this->post->coordinates,
                 'publish_up' => '2025-03-10 10:00:00',
             ],
 
@@ -99,30 +106,29 @@ class TravelApiTest extends TestCase
     /* Тестирование метода фильтра на отсутствующий год */
     public function test_travel_map_missing_year(): void
     {
-        $post = TravelPosts::factory()->create();
         TravelPosts::factory()->createMany([
             [
                 'joomla_id' => 100,
                 'title' => 'Пост про Непал 2026',
-                'country' => $post->country,
-                'city' => $post->city,
-                'coordinates' => $post->coordinates,
+                'country' => $this->post->country,
+                'city' => $this->post->city,
+                'coordinates' => $this->post->coordinates,
                 'publish_up' => '2026-05-25 07:18:21',
             ],
             [
                 'joomla_id' => 200,
                 'title' => 'Пост про Вьетнам 2026',
-                'country' => $post->country,
-                'city' => $post->city,
-                'coordinates' => $post->coordinates,
+                'country' => $this->post->country,
+                'city' => $this->post->city,
+                'coordinates' => $this->post->coordinates,
                 'publish_up' => '2026-08-10 10:00:00',
             ],
             [
                 'joomla_id' => 300,
                 'title' => 'Пост про Францию 2025',
-                'country' => $post->country,
-                'city' => $post->city,
-                'coordinates' => $post->coordinates,
+                'country' => $this->post->country,
+                'city' => $this->post->city,
+                'coordinates' => $this->post->coordinates,
                 'publish_up' => '2025-03-10 10:00:00',
             ],
 
