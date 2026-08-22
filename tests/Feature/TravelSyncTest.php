@@ -61,7 +61,9 @@ class TravelSyncTest extends TestCase
         ]);
 
         $service = new TravelSyncService;
+
         $service->sync($postsJoomla);
+        
         $this->assertDatabaseHas('travel_posts', [
             'joomla_id' => 100,
             'title' => 'Тестовый пост',
@@ -180,7 +182,7 @@ class TravelSyncTest extends TestCase
     /* Тестирование случая когда возвращается пустой массив после синхронизации с Joomla и данные в таблице Laravel никуда не исчезают */
     public function test_sync_empty_post(): void
     {
-        
+
         $modified = '2026-08-20 10:00:00';
 
         // Создаем множество экземпляров в таблице Laravel

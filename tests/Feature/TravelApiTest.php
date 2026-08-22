@@ -10,36 +10,127 @@ class TravelApiTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_travel_map_return_points(): void
+    /* Тестирование метода вывода всех точек на карте */
+    public function test_travel_map_return_all_points(): void
     {
-        $modified = '2026-08-20 10:00:00';
         $post = TravelPosts::factory()->create();
-        // Создаем множество экземпляров в таблице Laravel
-        for ($i = 0; $i <= 3; $i++) {
-            TravelPosts::factory()->createMany([
-                [
-                    'joomla_id' => $i,
-                    'title' => "Путешествие в Непал-{$i}",
-                    'country' => "Непал-{$i}",
-                    'city' => 'Катманду',
-                    'coordinates' => '27.714955,85.290351',
-                    'joomla_modified' => $modified,
-                ],
-                [
-                    'joomla_id' => $i,
-                    'joomla_modified' => $modified,
-                ],
-                [
-                    'joomla_id' => $i,
-                    'joomla_modified' => $modified,
-                ],
-                [
-                    'joomla_id' => $i,
-                    'joomla_modified' => $modified,
-                ],
-            ]);
-        }
-        $response = $this->getJson('api/travel-maps');
+        TravelPosts::factory()->createMany([
+            [
+                'joomla_id' => 100,
+                'title' => 'Пост про Непал',
+                'country' => $post->country,
+                'city' => $post->city,
+                'coordinates' => $post->coordinates,
+                'publish_up' => '2026-05-25 07:18:21',
+            ],
+            [
+                'joomla_id' => 200,
+                'title' => 'Пост про Вьетнам',
+                'country' => $post->country,
+                'city' => $post->city,
+                'coordinates' => $post->coordinates,
+                'publish_up' => '2025-03-10 10:00:00',
+            ],
+
+        ]);
+
+        $response = $this->getJson('/api/map-points');
+
         $response->assertStatus(200);
+
+        $response->assertJsonFragment([
+            'title' => 'Пост про Непал',
+        ]);
+
+        $response->assertJsonFragment([
+            'title' => 'Пост про Вьетнам',
+        ]);
+    }
+
+    /* Тестирование метода фильтра постов по годам */
+    public function test_travel_map_filter_years(): void
+    {
+        $post = TravelPosts::factory()->create();
+        TravelPosts::factory()->createMany([
+            [
+                'joomla_id' => 100,
+                'title' => 'Пост про Непал 2026',
+                'country' => $post->country,
+                'city' => $post->city,
+                'coordinates' => $post->coordinates,
+                'publish_up' => '2026-05-25 07:18:21',
+            ],
+            [
+                'joomla_id' => 200,
+                'title' => 'Пост про Вьетнам 2026',
+                'country' => $post->country,
+                'city' => $post->city,
+                'coordinates' => $post->coordinates,
+                'publish_up' => '2026-08-10 10:00:00',
+            ],
+            [
+                'joomla_id' => 300,
+                'title' => 'Пост про Францию 2025',
+                'country' => $post->country,
+                'city' => $post->city,
+                'coordinates' => $post->coordinates,
+                'publish_up' => '2025-03-10 10:00:00',
+            ],
+
+        ]);
+
+        $response = $this->getJson('/api/filter-data?year=2026');
+
+        $response->assertStatus(200);
+
+        $response->assertJsonFragment([
+            'title' => 'Пост про Непал 2026',
+        ]);
+
+        $response->assertJsonFragment([
+            'title' => 'Пост про Вьетнам 2026',
+        ]);
+
+        $response->assertJsonMissing([
+            'title' => 'Пост про Францию 2025',
+        ]);
+    }
+
+    /* Тестирование метода фильтра на отсутствующий год */
+    public function test_travel_map_missing_year(): void
+    {
+        $post = TravelPosts::factory()->create();
+        TravelPosts::factory()->createMany([
+            [
+                'joomla_id' => 100,
+                'title' => 'Пост про Непал 2026',
+                'country' => $post->country,
+                'city' => $post->city,
+                'coordinates' => $post->coordinates,
+                'publish_up' => '2026-05-25 07:18:21',
+            ],
+            [
+                'joomla_id' => 200,
+                'title' => 'Пост про Вьетнам 2026',
+                'country' => $post->country,
+                'city' => $post->city,
+                'coordinates' => $post->coordinates,
+                'publish_up' => '2026-08-10 10:00:00',
+            ],
+            [
+                'joomla_id' => 300,
+                'title' => 'Пост про Францию 2025',
+                'country' => $post->country,
+                'city' => $post->city,
+                'coordinates' => $post->coordinates,
+                'publish_up' => '2025-03-10 10:00:00',
+            ],
+
+        ]);
+
+        $response = $this->getJson('/api/filter-data?year=2030');
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(0);
     }
 }
