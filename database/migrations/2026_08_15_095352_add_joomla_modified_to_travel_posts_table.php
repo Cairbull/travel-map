@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('travel_posts', function (Blueprint $table) {
-            $table->dateTime('joomla_modified')->nullable();
-        });
+        // Schema::table('travel_posts', function (Blueprint $table) {
+        //     $table->dateTime('joomla_modified')->nullable();
+        // });
     }
 
     /**
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('travel_posts', function (Blueprint $table) {
-            $table->dropColumn('joomla_modified');
-        });
+        // Schema::table('travel_posts', function (Blueprint $table) {
+        //     $table->dropColumn('joomla_modified');
+        // });
     }
 };
