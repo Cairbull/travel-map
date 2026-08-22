@@ -23,6 +23,8 @@ class TravelMapController extends Controller
 
    public function getFilterData(Request $request)
    {
+      $request->validate(['year'=>['nullable', 'digits:4']]);
+      
       $year = $request->query('year');
       $points = $this->travelService->cacheMapPoints($year);
       return response()->json($points);

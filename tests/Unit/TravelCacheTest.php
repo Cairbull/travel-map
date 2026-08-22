@@ -77,7 +77,7 @@ class TravelCacheTest extends TestCase
             Cache::has('map-points-year-2026')
         );
     }
-    /* Тестирование метода запоминания кэша и последующей загрузки из него */
+    /* Тестирование метода памяти кэша и последующей загрузки из него */
     public function test_cached_return_data_without_database_query(): void
     {
         Cache::forget('map-points-all');
@@ -97,5 +97,45 @@ class TravelCacheTest extends TestCase
 
         $secondQuery = $this->service->cacheMapPoints();
         $this->assertSame($firstQuery, $secondQuery);
+    }
+    /* Тестирование метода вывода все данных о метках без параметра года */
+    public function test_filter_data_without_year_returns_all_points(): void
+    {
+        TravelPosts::factory()->createMany([
+            [
+                'title' => 'Пост про Непал в 2026 году',
+                'publish_up' => '2026-05-25 07:18:21',
+            ],
+            [
+                'title' => 'Пост про Непал в 2025 году',
+                'publish_up' => '2025-03-10 10:00:00',
+            ],
+        ]);
+
+        $response = $this->getJson('/api/filter-data');
+
+        $response->assertStatus(200);
+
+        $response->assertJsonFragment([
+            'title' => 'Пост про Непал в 2026 году',
+        ]);
+
+        $response->assertJsonFragment([
+            'title' => 'Пост про Непал в 2025 году',
+        ]);
+    }
+    /* Тестирование валидации параметра года если в нем передавать литеры */
+    public function test_filter_data_rejects_invalid_year(): void
+    {
+        $response = $this->getJson('/api/filter-data?year=abc');
+
+        $response->assertStatus(422);
+    }
+    /* Тестирование валидации параметра года если в нем передавать числовые значения */
+    public function test_filter_data_rejects_year_with_wrong_length(): void
+    {
+        $response = $this->getJson('/api/filter-data?year=26');
+
+        $response->assertStatus(422);
     }
 }
