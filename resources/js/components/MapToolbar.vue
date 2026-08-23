@@ -1,7 +1,8 @@
-<script setup>
-const props = defineProps({
+<script setup lang="ts">
+
+defineProps({
     years: {
-        type: Array,
+        type: Array as () => (string | number)[],
         default: () => []
     },
      selectedYear: {
