@@ -15,6 +15,6 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            echo "Connected to VPS"
+            echo "Connected to VPS is good"
             cd /home/www/laravel-app
             git pull origin ci/tests
