@@ -1,20 +1,42 @@
-name: Deploy
+name: Deploy Production
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
-      - name: Deploy to server
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          script: |
-            echo "Connected to VPS is good"
-            cd /home/www/laravel-app
-            git pull origin ci/tests
+      - name: Update production
+        run: |
+          cd /home/www/laravel-app
+          git fetch origin
+          git reset --hard origin/master
+
+      - name: Install PHP dependencies
+        run: |
+          cd /home/www/laravel-app
+          composer install --no-dev --optimize-autoloader
+
+      - name: Install JS dependencies
+        run: |
+          cd /home/www/laravel-app
+          npm ci
+
+      - name: Build frontend
+        run: |
+          cd /home/www/laravel-app
+          npm run build
+
+      - name: Run migrations
+        run: |
+          cd /home/www/laravel-app
+          php artisan migrate --force
+
+      - name: Clear Laravel cache
+        run: |
+          cd /home/www/laravel-app
+          php artisan optimize:clear
