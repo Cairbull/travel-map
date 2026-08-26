@@ -2,10 +2,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\TravelMapController;
+use App\Http\Controllers\Api\TravelTripsController;
 
 Route::post('/location', [LocationController::class, 'store']);
 Route::get('/map-points', [TravelMapController::class,'getData']);
 Route::get('/filter-data', [TravelMapController::class,'getFilterData']);
+Route::get('/trips', [TravelTripsController::class,'index']);
 Route::get('/travel-map', function () {
     return view('travel-map');
 });
