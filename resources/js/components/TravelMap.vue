@@ -1,6 +1,6 @@
-<script setup>
-import { ref, onMounted } from "vue";
+<script setup lang="ts">
 import maplibregl from "maplibre-gl";
+import { ref, onMounted } from "vue";
 import MapToolbar from "@/components/MapToolbar.vue";
 import "maplibre-gl/dist/maplibre-gl.css";
 
@@ -52,7 +52,7 @@ const createMarker = (
   if (foundCoord != null) {
     const lat = Number(foundCoord[1]);
     const lng = Number(foundCoord[2]);
-    let image = foundImage[1].replace(/\\\//g, "/");
+    const image = foundImage[1].replace(/\\\//g, "/");
 
     //создаем html элемент с маркером на карте
     const markerCustom = document.createElement("div");
