@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import TravelMap from './TravelMap.vue'
 
@@ -15,6 +15,7 @@ const loading = ref(false);
 
 const fetchStatistics = async () => {
     loading.value = true
+
     try {
         const response = await fetch('/api/statistics')
         
@@ -32,6 +33,7 @@ const fetchStatistics = async () => {
 
 const fetchTrips = async () => {
     loading.value = true
+
     try {
         const response = await fetch('/api/trips');
         const result = await response.json();
