@@ -38,6 +38,7 @@ class SyncTravel extends Command
                         'country' => $postJoomla->country,
                         'city' => $postJoomla->city,
                         'coordinates' => $postJoomla->coordinates,
+                        'group_stories' => $postJoomla->group_stories,
                         'joomla_modified' => $postJoomla->modified,
                     ]
                 );
@@ -60,6 +61,7 @@ class SyncTravel extends Command
                     'country' => $postJoomla->country,
                     'city' => $postJoomla->city,
                     'coordinates' => $postJoomla->coordinates,
+                    'group_stories' => $postJoomla->group_stories,
                     'joomla_modified' => $postJoomla->modified,
                 ]
             );

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+
 use App\Models\TravelPosts;
 
 class TravelSyncService
@@ -13,13 +14,14 @@ class TravelSyncService
         //
     }
 
-    public function sync($postsJoomla): array{
+    public function sync($postsJoomla): array
+    {
         $joomlaIds = $postsJoomla->pluck('id');
 
         $created = 0;
         $updated = 0;
         $skipped = 0;
-        
+
         foreach ($postsJoomla as $postJoomla) {
             //Ищем пост в Laravel
             $postLaravel = TravelPosts::where('joomla_id', $postJoomla->id)->first();
@@ -36,6 +38,7 @@ class TravelSyncService
                         'country' => $postJoomla->country,
                         'city' => $postJoomla->city,
                         'coordinates' => $postJoomla->coordinates,
+                        'group_stories' => $postJoomla->group_stories,
                         'joomla_modified' => $postJoomla->modified,
                     ]
                 );
@@ -58,13 +61,14 @@ class TravelSyncService
                     'country' => $postJoomla->country,
                     'city' => $postJoomla->city,
                     'coordinates' => $postJoomla->coordinates,
+                    'group_stories' => $postJoomla->group_stories,
                     'joomla_modified' => $postJoomla->modified,
                 ]
             );
             $updated++;
         }
 
-         // Если пришел пустой массив, то удаление будет отменено и посты не сотрутся
+        // Если пришел пустой массив, то удаление будет отменено и посты не сотрутся
         if ($postsJoomla->isEmpty()) {
             return [
                 'success' => false,
@@ -80,7 +84,7 @@ class TravelSyncService
             'joomla_id',
             $joomlaIds
         )->delete();
-        
+
         return [
             'success' => true,
             'created' => $created,
@@ -89,5 +93,4 @@ class TravelSyncService
             'deleted' => $deleted,
         ];
     }
-
 }
