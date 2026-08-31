@@ -9,7 +9,7 @@
 }
 
 .maplibregl-map{
-    /* position: inherit; */
+    position: inherit;
     margin-top: 30px;
 }
 

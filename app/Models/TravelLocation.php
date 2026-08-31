@@ -20,7 +20,9 @@ class TravelLocation extends Model
         'country',
         'city',
         'coordinates',
-        'group_stories'
+        'group_stories',
+        'preview_image_journey',
+        'flag_country',
     ];
 
     protected $casts = [
@@ -41,7 +43,9 @@ class TravelLocation extends Model
                 'country',
                 'city',
                 'coordinates',
-                'group_stories'
+                'group_stories',
+                'preview_image_journey',
+                'flag_country',
             )
             ->get();
     }
@@ -59,7 +63,9 @@ class TravelLocation extends Model
                 'country',
                 'city',
                 'coordinates',
-                'group_stories'
+                'group_stories',
+                'preview_image_journey',
+                'flag_country',
             )
             ->when($year, function ($query) use ($year) {
                 $query->where(

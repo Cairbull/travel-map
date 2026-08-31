@@ -24,7 +24,9 @@ class TravelLocationResource extends JsonResource
             'year' => $this->publish_up?->year,
             'image' => $this->images,
             'coordinates' => $this->coordinates,
-            'group_stories' => $this->group_stories
+            'group_stories' => $this->group_stories,
+            'preview_image_journey' => $this->preview_image_journey,
+            'flag_country' => $this->flag_country
         ];
     }
 }

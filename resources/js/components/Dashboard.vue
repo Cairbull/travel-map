@@ -9,7 +9,7 @@ const statistics = ref({
     years: 0,
 });
 
-const trips = ref([]);
+const journeys = ref([]);
 
 const loading = ref(false);
 
@@ -31,18 +31,18 @@ const fetchStatistics = async () => {
     }
 }
 
-const fetchTrips = async () => {
+const fetchJourneys = async () => {
     loading.value = true
 
     try {
-        const response = await fetch('/api/trips');
+        const response = await fetch('/api/journeys');
         const result = await response.json();
         
         if (!response.ok) {
-            throw new Error('Failed to load trips')
+            throw new Error('Failed to load journeys')
         }
 
-        trips.value = result.data;
+        journeys.value = result;
     } catch (error) {
         console.error(error)
     } finally {
@@ -52,7 +52,7 @@ const fetchTrips = async () => {
 
 onMounted(() => {
     fetchStatistics()
-    fetchTrips()
+    fetchJourneys()
 })
 </script>
 
@@ -67,7 +67,7 @@ onMounted(() => {
                     M
                 </div>
 
-                <span>MAXWRITES</span>
+                <span>Макс пишет</span>
             </div>
 
             <nav class="navigation">
@@ -142,7 +142,7 @@ onMounted(() => {
                     <div class="hero-top">
 
                         <span class="hero-badge">
-                            RECENT
+                            Текущее
                         </span>
 
                         <div class="hero-actions">
@@ -169,7 +169,7 @@ onMounted(() => {
 
 
                     <div class="hero-title">
-                        Vietnam 2026
+                        Вьетнам 2026
                     </div>
 
 
@@ -178,15 +178,15 @@ onMounted(() => {
                         <div class="hero-info__item">
 
                             <span class="hero-info__label">
-                                COUNTRY
+                                Страна
                             </span>
 
                             <strong>
-                                🇻🇳 Vietnam
+                                🇻🇳 Вьетнам
                             </strong>
 
                             <small>
-                                Southeast Asia
+                                Южная Азия
                             </small>
 
                         </div>
@@ -198,7 +198,7 @@ onMounted(() => {
                         <div class="hero-info__item">
 
                             <span class="hero-info__label">
-                                LOCATIONS
+                                Локации
                             </span>
 
                             <strong>
@@ -206,7 +206,7 @@ onMounted(() => {
                             </strong>
 
                             <small>
-                                destinations
+                                направлений
                             </small>
 
                         </div>
@@ -218,7 +218,7 @@ onMounted(() => {
                         <div class="hero-info__item">
 
                             <span class="hero-info__label">
-                                YEAR
+                                ГОД
                             </span>
 
                             <strong>
@@ -226,7 +226,7 @@ onMounted(() => {
                             </strong>
 
                             <small>
-                                latest trip
+                                последнее путешествие
                             </small>
 
                         </div>
@@ -247,11 +247,11 @@ onMounted(() => {
 
                             <div>
                                 <span class="eyebrow">
-                                    TRAVEL OVERVIEW
+                                    Статистика
                                 </span>
 
                                 <h2>
-                                    My journey
+                                    Путешествия
                                 </h2>
                             </div>
 
@@ -272,11 +272,11 @@ onMounted(() => {
 
                                 <div>
                                     <strong>
-                                        Countries
+                                        Страны
                                     </strong>
 
                                     <small>
-                                        visited
+                                        посещенные
                                     </small>
                                 </div>
 
@@ -295,11 +295,11 @@ onMounted(() => {
 
                                 <div>
                                     <strong>
-                                        Locations
+                                        Локации
                                     </strong>
 
                                     <small>
-                                        mapped
+                                        на карте
                                     </small>
                                 </div>
 
@@ -344,7 +344,7 @@ onMounted(() => {
 
                             <div>
                                 <span class="eyebrow">
-                                    SYSTEM
+                                    Система
                                 </span>
 
                                 <h2>
@@ -354,7 +354,7 @@ onMounted(() => {
 
                             <span class="online">
                                 <i></i>
-                                Online
+                                В сети
                             </span>
 
                         </div>
@@ -367,7 +367,7 @@ onMounted(() => {
                             </span>
 
                             <strong>
-                                Connected
+                                Синхронизирован
                             </strong>
 
                         </div>
@@ -380,7 +380,7 @@ onMounted(() => {
                             </span>
 
                             <strong>
-                                Healthy
+                                Обновлен
                             </strong>
 
                         </div>
@@ -393,7 +393,7 @@ onMounted(() => {
                             </span>
 
                             <strong>
-                                4 min ago
+                                4 минуты назад
                             </strong>
 
                         </div>
@@ -405,14 +405,14 @@ onMounted(() => {
             </section>
 
 
-            <!-- STATISTICS -->
+            <!-- Статистика -->
             <section class="statistics">
 
 
                 <article class="stat-card stat-card--dark">
 
                     <span class="eyebrow">
-                        ATLAS · COUNTRIES VISITED
+                        Список · посещенных стран
                     </span>
 
                     <div class="stat-main">
@@ -421,12 +421,19 @@ onMounted(() => {
                         </strong>
 
                         <span>
-                            of 195
+                            из 195
                         </span>
                     </div>
 
                     <div class="flags">
-                        🇻🇳 🇳🇵 🇵🇭
+                        <article v-for="journey in journeys" :key="journey.group_stories">
+                        <div class="journeys-country">
+                            <img class="icon_flag"
+                                :src="journey.flag_country"
+                        :alt="journey.country"
+                            >
+                            </div>
+                        </article>
                     </div>
 
                 </article>
@@ -435,7 +442,7 @@ onMounted(() => {
                 <article class="stat-card">
 
                     <span class="eyebrow">
-                        TRIPS TOTAL
+                        Общее число путешествий
                     </span>
 
                     <strong class="stat-value">
@@ -443,7 +450,7 @@ onMounted(() => {
                     </strong>
 
                     <span class="stat-description">
-                        recorded trips
+                        записанных путешествий
                     </span>
 
                     <div class="mini-chart">
@@ -462,7 +469,7 @@ onMounted(() => {
                 <article class="stat-card">
 
                     <span class="eyebrow">
-                        LOCATIONS
+                        Локации
                     </span>
 
                     <strong class="stat-value">
@@ -470,7 +477,7 @@ onMounted(() => {
                     </strong>
 
                     <span class="stat-description">
-                        places mapped
+                        посещенных мест
                     </span>
 
                     <div class="mini-chart mini-chart--second">
@@ -489,7 +496,7 @@ onMounted(() => {
                 <article class="stat-card">
 
                     <span class="eyebrow">
-                        YEARS TRAVELLING
+                        Время в путешествии
                     </span>
 
                     <strong class="stat-value">
@@ -497,7 +504,7 @@ onMounted(() => {
                     </strong>
 
                     <span class="stat-description">
-                        years of travelling
+                        годы путешествий
                     </span>
 
                     <div class="circle-progress">
@@ -509,18 +516,18 @@ onMounted(() => {
             </section>
 
 
-            <!-- TRIPS -->
+            <!-- Путешествия -->
             <section class="trips-section">
 
                 <div class="section-header">
 
                     <div>
                         <span class="eyebrow">
-                            JOURNAL
+                            Журнал путешествий
                         </span>
 
                         <h2>
-                            My Trips
+                            Мои путешествия
                         </h2>
                     </div>
 
@@ -528,15 +535,15 @@ onMounted(() => {
                     <div class="section-controls">
 
                         <button class="tab">
-                            Planned
+                            Планируемые
                         </button>
 
                         <button class="tab">
-                            Archived
+                            В архиве
                         </button>
 
                         <button class="tab active">
-                            Completed
+                            Завершенные
                         </button>
 
                         <button class="view-button">
@@ -548,69 +555,38 @@ onMounted(() => {
                 </div>
 
 
-                <div class="trips-grid">
+                <div class="journeys-grid">
+                    <article v-for="journey in journeys" :key="journey.group_stories" class="trip-card">
 
-<article class="trip-card">
-
-                        <div class="trip-image">
+                        <div class="journeys-image">
 
                             <img
-                                src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=85"
-                                alt="Nepal"
+                                :src="journey.preview_image_journey"
+                        :alt="journey.group_stories"
                             >
 
                             <span>
-                                2024
+                                {{journey.year}}
                             </span>
 
                         </div>
 
-                        <div class="trip-content">
+                        <div class="journeys-content">
 
-                            <div class="trip-country">
-                                🇳🇵 Nepal
+                            <div class="journeys-country">
+                            <img class="icon_flag"
+                                :src="journey.flag_country"
+                        :alt="journey.country"
+                            > {{journey.country}}
                             </div>
 
                             <h3>
-                                Kathmandu & Himalayas
+                                {{journey.group_stories}}
                             </h3>
 
-                            <div class="trip-meta">
-                                <span>5 locations</span>
-                                <span>2024</span>
-                            </div>
-
-                        </div>
-
-                    </article>
-                    <article v-for="trip in trips" :key="trip.id" class="trip-card">
-
-                        <div class="trip-image">
-
-                            <img
-                                :src="trip.image"
-                        :alt="trip.title"
-                            >
-
-                            <span>
-                                {{trip.year}}
-                            </span>
-
-                        </div>
-
-                        <div class="trip-content">
-
-                            <div class="trip-country">
-                                {{trip.country}}
-                            </div>
-
-                            <h3>
-                                {{trip.group_stories}}
-                            </h3>
-
-                            <div class="trip-meta">
-                                <span>{{ trip.group_stories?.length || 0 }} историй</span>
-                                <span>{{trip.year}}</span>
+                            <div class="journeys-meta">
+                                <span>{{ journey.stories_count}} истории</span>
+                                <span>{{journey.year}}</span>
                             </div>
 
                         </div>
@@ -629,16 +605,16 @@ onMounted(() => {
 
                     <div>
                         <span class="eyebrow">
-                            ATLAS
+                            Карта
                         </span>
 
                         <h2>
-                            Travel Map
+                            Карта путешествий
                         </h2>
                     </div>
 
                     <button class="map-button">
-                        Open full map ↗
+                        Открыть карту ↗
                     </button>
 
                 </div>

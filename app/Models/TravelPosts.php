@@ -20,6 +20,8 @@ class TravelPosts extends Model
         'city',
         'coordinates',
         'group_stories',
+        'preview_image_journey',
+        'flag_country',
         'joomla_modified',
     ];
 

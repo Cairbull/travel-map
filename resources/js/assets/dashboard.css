@@ -232,7 +232,7 @@
 
 .hero-badge {
   padding: 9px 13px;
-
+  text-transform: uppercase;
   border-radius: 10px;
 
   background: rgba(255, 255, 255, 0.18);
@@ -321,7 +321,7 @@
 
 .hero-info__label {
   color: #7f858c;
-
+  text-transform: uppercase;
   font-size: 9px;
   font-weight: 800;
 
@@ -390,7 +390,7 @@
 
 .eyebrow {
   display: block;
-
+  text-transform: uppercase;
   color: #979ca3;
 
   font-size: 9px;
@@ -566,6 +566,7 @@
 
 .stat-card--dark .eyebrow {
   color: #8f9398;
+  text-transform: uppercase;
 }
 
 .stat-main {
@@ -805,7 +806,7 @@
   cursor: pointer;
 }
 
-.trips-grid {
+.journeys-grid {
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
@@ -833,7 +834,7 @@
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
 }
 
-.trip-image {
+.journeys-image {
   position: relative;
 
   height: 230px;
@@ -841,7 +842,7 @@
   overflow: hidden;
 }
 
-.trip-image img {
+.journeys-image img {
   width: 100%;
   height: 100%;
 
@@ -850,11 +851,11 @@
   transition: transform 0.4s;
 }
 
-.trip-card:hover .trip-image img {
+.trip-card:hover .journeys-image img {
   transform: scale(1.04);
 }
 
-.trip-image span {
+.journeys-image span {
   position: absolute;
 
   top: 13px;
@@ -872,18 +873,22 @@
   font-weight: 700;
 }
 
-.trip-content {
+.journeys-content {
   padding: 17px 18px 19px;
 }
 
-.trip-country {
+.journeys-country {
   color: #898f96;
 
   font-size: 10px;
   font-weight: 600;
 }
 
-.trip-content h3 {
+.icon_flag {
+  max-width: 11px;
+}
+
+.journeys-content h3 {
   margin: 7px 0 14px;
 
   font-size: 16px;
@@ -891,7 +896,7 @@
   letter-spacing: -0.3px;
 }
 
-.trip-meta {
+.journeys-meta {
   display: flex;
   justify-content: space-between;
 
@@ -1008,7 +1013,7 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .trips-grid {
+  .journeys-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -1030,7 +1035,7 @@
     grid-template-columns: 1fr;
   }
 
-  .trips-grid {
+  .journeys-grid {
     grid-template-columns: 1fr;
   }
 
