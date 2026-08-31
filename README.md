@@ -12,6 +12,8 @@
 - MySQL
 - Redis
 - Scheduler
+- PhpUnit
+- CI
 
 ## Возможности
 
@@ -77,6 +79,8 @@ An interactive travel map built with Laravel, Vue, and MapLibre GL.
 - MySQL
 - Redis
 - Scheduler
+- PhpUnit
+- CI
 
 ## Features
 
