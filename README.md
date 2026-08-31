@@ -55,6 +55,11 @@ MapLibre GL
 
 С помощью планировщика задач производится, как очистка кэша для актуализации данных так и синхронизация данных таблицы **Laravel** с таблицей Joomla.
 Сделано это для того, чтобы данные тянулись напрямую, а не с Joomla. Тут буквально реализован принцип **CRUD**, когда новые данные создаются, существующие обновляются, а неактуальные удаляются.
+
+## Будущая модель развития проекта
+Создается полноценный дашборд https://api.maxwrites.ru/api/dashboard который будет отображать динамическую информацию по моим путешествиям и данным связанным с работой синхронизации, кеширования и так далее.
+Сейчас выводятся актуальные статистические данные, группирования путешествий по одной стране и отображение карты.
+
 <br>
 [![Карта путешествий](https://img.shields.io/badge/🌍%20Карта%20путешествий-API-2ea44f?style=for-the-badge)](https://api.maxwrites.ru/api/travel-map)
 
@@ -114,6 +119,10 @@ A **year-based filter** has also been implemented. Users can select a specific y
 
 The task scheduler handles both cache clearing—to ensure data is up to date—and the synchronization of data between the **Laravel** table and the **Joomla** table.
 This setup ensures that data is retrieved directly rather than from Joomla. It essentially implements the **CRUD** principle: new data is created, existing data is updated, and outdated data is deleted.
+
+## Future Project Development Model
+A full-fledged dashboard (https://api.maxwrites.ru/api/dashboard) is currently being built to display dynamic information about my travels, as well as data related to synchronization, caching, and other processes.
+It currently displays up-to-date statistics, groups trips by country, and shows a map.
 
 [![Travel map](https://img.shields.io/badge/🌍%20Travel%20Map-API-2ea44f?style=for-the-badge)](https://api.maxwrites.ru/api/travel-map)
 
