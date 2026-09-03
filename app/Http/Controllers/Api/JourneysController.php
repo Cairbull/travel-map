@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\TravelPosts;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Str;
 
 class JourneysController extends Controller
 {
@@ -18,6 +19,7 @@ class JourneysController extends Controller
                 $first = $stories->first();
                 return [
                     'group_stories' => $first->group_stories,
+                    'slug' => Str::slug($first->group_stories),
                     'country' => $first->country,
                     'preview_image_journey' => $first->preview_image_journey,
                     'flag_country' => $first->flag_country,

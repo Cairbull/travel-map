@@ -20,6 +20,7 @@ Route::get('/journeys', [JourneysController::class, 'index']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
 Route::get('/travel-map', function () {
     return view('travel-map');
 });
