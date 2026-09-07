@@ -25,7 +25,7 @@ class TravelSyncTest extends TestCase
     }
 
     /* Динамическое создание данных в таблице Joomla */
-    private function joomlaPost(int $id, string $title, string $alias, string $introtext, string $country, string $city, string $coordinates, string $modified = '2026-08-20 10:00:00'): object
+    private function joomlaPost(int $id, string $title, string $alias, string $introtext, string $country, string $city, string $coordinates, string $group_stories = 'Непальские истории', string $modified = '2026-08-20 10:00:00'): object
     {
         return (object) [
             'id' => $id,
@@ -37,6 +37,7 @@ class TravelSyncTest extends TestCase
             'country' => $country,
             'city' => $city,
             'coordinates' => $coordinates,
+            'group_stories' => $group_stories,
             'modified' => $modified,
         ];
     }
@@ -54,11 +55,12 @@ class TravelSyncTest extends TestCase
     {
         $post = TravelPosts::factory()->create([
             'joomla_id' => 100,
+            'group_stories' => 'Непальские истории',
             'joomla_modified' => '2026-08-17 11:00:00',
         ]);
 
         $postsJoomla = collect([
-            $this->joomlaPost(100, $post->title, $post->alias, $post->introtext, $post->country, $post->city, "{$post->coordinates}", '2026-08-17 11:00:00')
+            $this->joomlaPost(100, $post->title, $post->alias, $post->introtext, $post->country, $post->city, "{$post->coordinates}", 'Непальские истории', '2026-08-17 11:00:00')
         ]);
 
         $this->service->sync($postsJoomla);
@@ -69,6 +71,7 @@ class TravelSyncTest extends TestCase
             'country' => $post->country,
             'city' => $post->city,
             'coordinates' => $post->coordinates,
+            'group_stories' => 'Непальские истории',
             'joomla_modified' => '2026-08-17 11:00:00',
         ]);
 
@@ -81,11 +84,12 @@ class TravelSyncTest extends TestCase
         // Основной принцип кроется в сравнении на изменение даты публикации
         $post = TravelPosts::factory()->create([
             'joomla_id' => 100,
+            'group_stories' => 'Непальские истории',
             'joomla_modified' => '2026-08-17 10:00:00',
         ]);
 
         $postsJoomla = collect([
-            $this->joomlaPost(100, $post->title, $post->alias, $post->introtext, $post->country, $post->city, "{$post->coordinates}", '2026-08-17 11:00:00')
+            $this->joomlaPost(100, $post->title, $post->alias, $post->introtext, $post->country, $post->city, "{$post->coordinates}", 'Непальские истории', '2026-08-17 11:00:00')
         ]);
 
         // Синхронизируем
@@ -93,6 +97,7 @@ class TravelSyncTest extends TestCase
 
         $this->assertDatabaseHas('travel_posts', [
             'joomla_id' => 100,
+            'group_stories' => 'Непальские истории',
             'joomla_modified' => '2026-08-17 11:00:00',
         ]);
 
@@ -106,11 +111,12 @@ class TravelSyncTest extends TestCase
         // Если ID совпадает и дата публикации даже, то строку оставляем без изменений
         $post = TravelPosts::factory()->create([
             'joomla_id' => 100,
+            'group_stories' => 'Непальские истории',
             'joomla_modified' => '2026-08-17 11:00:00',
         ]);
 
         $postsJoomla = collect([
-            $this->joomlaPost(100, $post->title, $post->alias, $post->introtext, $post->country, $post->city, "{$post->coordinates}", '2026-08-17 11:00:00')
+            $this->joomlaPost(100, $post->title, $post->alias, $post->introtext, $post->country, $post->city, "{$post->coordinates}", 'Непальские истории', '2026-08-17 11:00:00')
         ]);
 
         // Синхронизируем
@@ -122,6 +128,7 @@ class TravelSyncTest extends TestCase
             'country' => $post->country,
             'city' => $post->city,
             'coordinates' => $post->coordinates,
+            'group_stories' => 'Непальские истории',
             'joomla_modified' => '2026-08-17 11:00:00',
         ]);
 
@@ -156,9 +163,9 @@ class TravelSyncTest extends TestCase
 
         // Также создаем в таблице Joomla экземпляры, но убираем один ID
         $postsJoomla = collect([
-            $this->joomlaPost(100, "Тестовый пост-1", "alias-1", "introtext-1", "Nepal", "Kathmandu", "23.3545, 90.8345", $modified),
-            $this->joomlaPost(200, "Тестовый пост-2", "alias-2", "introtext-2", "Cambodia", "Pnompen", "46.4748, 56.4589", $modified),
-            $this->joomlaPost(300, "Тестовый пост-3", "alias-3", "introtext-3", "Vietnam", "Hanoi", "36.2545, 75.3894", $modified),
+            $this->joomlaPost(100, "Тестовый пост-1", "alias-1", "introtext-1", "Nepal", "Kathmandu", "23.3545, 90.8345",'Группа постов про Непал', $modified),
+            $this->joomlaPost(200, "Тестовый пост-2", "alias-2", "introtext-2", "Cambodia", "Pnompen", "46.4748, 56.4589", 'Группа постов про Вьетнам', $modified),
+            $this->joomlaPost(300, "Тестовый пост-3", "alias-3", "introtext-3", "Vietnam", "Hanoi", "36.2545, 75.3894",'Группа постов про Таиланд', $modified),
         ]);
 
         // Синхронизируем

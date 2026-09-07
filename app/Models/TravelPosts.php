@@ -19,6 +19,9 @@ class TravelPosts extends Model
         'country',
         'city',
         'coordinates',
+        'group_stories',
+        'preview_image_journey',
+        'flag_country',
         'joomla_modified',
     ];
 

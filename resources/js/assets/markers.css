@@ -1,7 +1,7 @@
 .travel-marker {
 
-    width: 68px;
-    height: 68px;
+    width: 45px;
+    height: 45px;
 
     border-radius: 50%;
 
@@ -16,7 +16,7 @@
 
     transition: .3s;
 
-    position: relative;
+    /* position: relative; */
 }
 
 .travel-marker img {

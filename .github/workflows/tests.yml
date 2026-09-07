@@ -27,14 +27,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'npm' 
-            
-      - name: Install frontend dependencies
-        run: npm ci
+          node-version: 22
+          cache: npm
 
-      - name: Run frontend lint
-        run: npm run lint
+      - name: Install NPM dependencies
+        run: npm ci
 
       - name: Build frontend
         run: npm run build

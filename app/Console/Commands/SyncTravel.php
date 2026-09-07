@@ -21,7 +21,7 @@ class SyncTravel extends Command
         $created = 0;
         $updated = 0;
         $skipped = 0;
-        
+
         foreach ($postsJoomla as $postJoomla) {
             //Ищем пост в Laravel
             $postLaravel = TravelPosts::where('joomla_id', $postJoomla->id)->first();
@@ -38,6 +38,9 @@ class SyncTravel extends Command
                         'country' => $postJoomla->country,
                         'city' => $postJoomla->city,
                         'coordinates' => $postJoomla->coordinates,
+                        'group_stories' => $postJoomla->group_stories,
+                        'preview_image_journey' => $postJoomla->preview_image_journey,
+                        'flag_country' => $postJoomla->flag_country,
                         'joomla_modified' => $postJoomla->modified,
                     ]
                 );
@@ -60,6 +63,9 @@ class SyncTravel extends Command
                     'country' => $postJoomla->country,
                     'city' => $postJoomla->city,
                     'coordinates' => $postJoomla->coordinates,
+                    'group_stories' => $postJoomla->group_stories,
+                    'preview_image_journey' => $postJoomla->preview_image_journey,
+                    'flag_country' => $postJoomla->flag_country,
                     'joomla_modified' => $postJoomla->modified,
                 ]
             );
