@@ -277,23 +277,39 @@ onMounted(() => {
         </article>
       </section>
 
-      <!-- Путешествия -->
+      <!-- Мои поездки -->
       <section class="trips-section">
         <div class="section-header">
           <div>
-            <span class="eyebrow"> Журнал путешествий </span>
+            <span class="eyebrow"> Журнал поездок </span>
 
-            <h2>Мои путешествия</h2>
+            <h2>Мои поездки</h2>
           </div>
 
           <div class="section-controls">
-            <button class="tab">Планируемые</button>
+<!-- <RouterLink
+                to="/plansJourneys"
+                class="tab"
+                active-class="tab active"
+            >
+          Планируемые
+        </RouterLink>
 
-            <button class="tab">В архиве</button>
+        <RouterLink
+                to="/finishJourneys"
+                class="tab"
+                active-class="tab active"
+            >
+          Завершенные
+        </RouterLink> -->
+
+            <button class="tab">Планируемые</button>
 
             <button class="tab active">Завершенные</button>
 
-            <button class="view-button">☷</button>
+            <button class="view-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+</svg></button>
           </div>
         </div>
 

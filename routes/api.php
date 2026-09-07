@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\TravelMapController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\TripsController;
 use App\Http\Controllers\Api\JourneysController;
+use App\Http\Controllers\Api\PlansController;
 
 // use App\Http\Controllers\Api\StoreTravelController;
 // use App\Http\Controllers\Api\UpdateTravelController;
@@ -15,6 +16,7 @@ Route::get('/filter-data', [TravelMapController::class,'getFilterData']);
 Route::get('/statistics', [StatisticsController::class,'index']);
 Route::get('/trips', [TripsController::class, 'index']);
 Route::get('/journeys', [JourneysController::class, 'index']);
+Route::get('/plans', [PlansController::class, 'index']);
 // Route::put('/trips/{travel}', [UpdateTravelController::class, 'update']);
 
 Route::get('/dashboard', function () {

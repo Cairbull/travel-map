@@ -4,6 +4,8 @@ import Dashboard from "../components/Dashboard.vue";
 import Calendar from "../components/Calendar.vue";
 import Map from "../components/Map.vue";
 import Journeys from "../components/Journeys.vue";
+import PlansJourneys from "../components/PlansJourneys.vue";
+import FinishJourneys from "../components/FinishJourneys.vue";
 import Journey from "../components/Journey.vue";
 
 const routes = [
@@ -15,6 +17,14 @@ const routes = [
   {
     path: "/calendar",
     component: Calendar,
+  },
+  {
+    path: "/plansJourneys",
+    component: PlansJourneys,
+  },
+  {
+    path: "/finishJourneys",
+    component: FinishJourneys,
   },
   {
     path: "/map",

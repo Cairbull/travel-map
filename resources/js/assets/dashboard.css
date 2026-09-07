@@ -11,7 +11,7 @@
 .dashboard {
   min-height: 100vh;
 
-  background: #f6f7f9;
+  background: #f6f6f6;
 
   color: #17191c;
 
@@ -19,7 +19,7 @@
 }
 
 /* ========================================
-   HEADER
+   Шапка
 ======================================== */
 
 .header {
@@ -159,7 +159,7 @@
 }
 
 /* ========================================
-   CONTENT
+   Контент
 ======================================== */
 
 .content {
@@ -171,7 +171,7 @@
 }
 
 /* ========================================
-   TOP SECTION
+   Верхняя секция
 ======================================== */
 
 .top-section {
@@ -183,7 +183,7 @@
 }
 
 /* ========================================
-   HERO
+   Баннер
 ======================================== */
 
 .hero-card {
@@ -294,7 +294,7 @@
 
   left: 28px;
   right: 28px;
-  bottom: 22px;
+  bottom: 8px;
 
   min-height: 92px;
 
@@ -741,12 +741,10 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-
-  margin-bottom: 18px;
 }
 
 .section-header h2 {
-  margin: 5px 0 0;
+  margin: 5px 0 15px;
 
   font-size: 26px;
 
@@ -937,15 +935,7 @@
 }
 
 .map-wrapper {
-  height: 560px;
-
   overflow: hidden;
-
-  border: 1px solid #e5e7e9;
-
-  border-radius: 20px;
-
-  background: white;
 }
 
 .map-wrapper :deep(.map),
