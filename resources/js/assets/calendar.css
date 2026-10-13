@@ -1,0 +1,463 @@
+.travel-journal {
+    width: 100%;
+    max-width: 1450px;
+
+    margin: 0 auto;
+
+    padding: 55px 55px 120px;
+}
+
+
+/* HEADER */
+
+.journal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-bottom: 90px;
+}
+
+.eyebrow {
+    display: block;
+
+    margin-bottom: 14px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: .18em;
+    text-transform: uppercase;
+
+    color: #a4a4a4;
+}
+
+.journal-header h1 {
+    margin: 0;
+
+    font-size: clamp(64px, 6vw, 96px);
+    line-height: .9;
+
+    font-weight: 300;
+    letter-spacing: -.04em;
+}
+
+.journal-header p {
+    margin: 18px 0 0;
+
+    font-size: 15px;
+
+    color: #999;
+}
+
+
+/* FILTERS */
+
+.filters {
+    display: flex;
+    gap: 8px;
+}
+
+.filters button {
+    padding: 11px 20px;
+
+    border: 1px solid #dedede;
+    border-radius: 100px;
+
+    background: transparent;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease;
+}
+
+.filters button:hover {
+    border-color: #111;
+}
+
+.filters button.active {
+    background: #111;
+    border-color: #111;
+
+    color: #fff;
+}
+
+
+/* TIMELINE */
+
+.timeline {
+    position: relative;
+}
+
+.journey {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 90px 1fr;
+
+    padding-bottom: 80px;
+}
+
+
+/*
+ * vertical timeline
+ */
+
+.timeline-marker {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+}
+
+.timeline-dot {
+    position: relative;
+    z-index: 3;
+
+    width: 12px;
+    height: 12px;
+
+    margin-top: 10px;
+
+    border-radius: 50%;
+
+    background: #111;
+
+    box-shadow:
+        0 0 0 7px #fff;
+}
+
+.timeline-line {
+    position: absolute;
+
+    top: 22px;
+    bottom: -80px;
+
+    width: 1px;
+
+    background: #dedede;
+}
+
+.journey:last-child .timeline-line {
+    display: none;
+}
+
+
+/* YEAR */
+
+.journey-month {
+    position: absolute;
+
+    left: 90px;
+    top: -28px;
+
+    font-size: 11px;
+
+    letter-spacing: .18em;
+
+    color: #aaa;
+}
+
+
+/* CARD */
+
+.journey-card {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 1fr 46%;
+
+    min-height: 340px;
+
+    overflow: hidden;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 18px;
+
+    background: #fafafa;
+
+    color: inherit;
+    text-decoration: none;
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease,
+        border-color .4s ease;
+}
+
+.journey-card:hover {
+    transform: translateY(-6px);
+
+    border-color: #d0d0d0;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, .10);
+}
+
+
+/* LEFT */
+
+.journey-card-content {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 42px;
+}
+
+
+/* NUMBER */
+
+.journey-number {
+    font-size: 11px;
+
+    letter-spacing: .15em;
+
+    color: #aaa;
+}
+
+
+/* COUNTRY */
+
+.journey-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.journey-country {
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.country-flag {
+    width: 34px;
+    height: 24px;
+
+    object-fit: cover;
+
+    border-radius: 3px;
+}
+
+.journey-country h2 {
+    margin: 0;
+
+    font-size: clamp(38px, 4vw, 58px);
+
+    line-height: 1;
+
+    font-weight: 300;
+
+    letter-spacing: -.04em;
+}
+
+.journey-year {
+    font-size: 13px;
+
+    color: #999;
+}
+
+
+/* BOTTOM */
+
+.journey-bottom {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.journey-stats {
+    font-size: 12px;
+
+    color: #999;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+}
+
+.explore {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 13px;
+
+    color: #777;
+
+    transition: color .3s ease;
+}
+
+.arrow {
+    font-size: 18px;
+
+    transition:
+        transform .3s ease,
+        color .3s ease;
+}
+
+.journey-card:hover .explore {
+    color: #111;
+}
+
+.journey-card:hover .arrow {
+    transform: translate(4px, -4px);
+}
+
+
+/* IMAGE */
+
+.journey-image {
+    position: relative;
+
+    min-height: 340px;
+
+    overflow: hidden;
+}
+
+.journey-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.journey-card:hover .journey-image img {
+    transform: scale(1.06);
+}
+
+
+/* IMAGE OVERLAY */
+
+.image-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, .08);
+
+    opacity: 0;
+
+    transition: opacity .4s ease;
+}
+
+.journey-card:hover .image-overlay {
+    opacity: 1;
+}
+
+
+/* IMAGE LABEL */
+
+.image-label {
+    position: absolute;
+
+    right: 25px;
+    bottom: 25px;
+
+    padding: 9px 13px;
+
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 100px;
+
+    background: rgba(255,255,255,.12);
+
+    backdrop-filter: blur(8px);
+
+    color: white;
+
+    font-size: 9px;
+
+    letter-spacing: .14em;
+
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+.journey-card:hover .image-label {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .travel-journal {
+        padding: 35px 20px 70px;
+    }
+
+    .journal-header {
+        display: block;
+
+        margin-bottom: 55px;
+    }
+
+    .journal-header h1 {
+        font-size: 58px;
+    }
+
+    .filters {
+        margin-top: 30px;
+
+        flex-wrap: wrap;
+    }
+
+    .journey {
+        grid-template-columns: 30px 1fr;
+
+        padding-bottom: 45px;
+    }
+
+    .journey-month {
+        left: 30px;
+    }
+
+    .journey-card {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+    }
+
+    .journey-image {
+        min-height: 250px;
+
+        order: -1;
+    }
+
+    .journey-card-content {
+        min-height: 260px;
+
+        padding: 28px;
+    }
+
+    .journey-country h2 {
+        font-size: 38px;
+    }
+
+}

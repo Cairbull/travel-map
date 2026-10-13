@@ -29,6 +29,7 @@ class TravelApiTest extends TestCase
                 'country' => $this->post->country,
                 'city' => $this->post->city,
                 'coordinates' => $this->post->coordinates,
+                'group_stories' => $this->post->group_stories,
                 'publish_up' => '2026-05-25 07:18:21',
             ],
             [
@@ -36,7 +37,7 @@ class TravelApiTest extends TestCase
                 'title' => 'Пост про Вьетнам',
                 'country' => $this->post->country,
                 'city' => $this->post->city,
-                'coordinates' => $this->post->coordinates,
+                'group_stories' => $this->post->group_stories,
                 'publish_up' => '2025-03-10 10:00:00',
             ],
 
@@ -65,6 +66,7 @@ class TravelApiTest extends TestCase
                 'country' => $this->post->country,
                 'city' => $this->post->city,
                 'coordinates' => $this->post->coordinates,
+                'group_stories' => $this->post->group_stories,
                 'publish_up' => '2026-05-25 07:18:21',
             ],
             [
@@ -73,6 +75,7 @@ class TravelApiTest extends TestCase
                 'country' => $this->post->country,
                 'city' => $this->post->city,
                 'coordinates' => $this->post->coordinates,
+                'group_stories' => $this->post->group_stories,
                 'publish_up' => '2026-08-10 10:00:00',
             ],
             [
@@ -81,6 +84,7 @@ class TravelApiTest extends TestCase
                 'country' => $this->post->country,
                 'city' => $this->post->city,
                 'coordinates' => $this->post->coordinates,
+                'group_stories' => $this->post->group_stories,
                 'publish_up' => '2025-03-10 10:00:00',
             ],
 
@@ -113,6 +117,7 @@ class TravelApiTest extends TestCase
                 'country' => $this->post->country,
                 'city' => $this->post->city,
                 'coordinates' => $this->post->coordinates,
+                'group_stories' => $this->post->group_stories,
                 'publish_up' => '2026-05-25 07:18:21',
             ],
             [
@@ -121,6 +126,7 @@ class TravelApiTest extends TestCase
                 'country' => $this->post->country,
                 'city' => $this->post->city,
                 'coordinates' => $this->post->coordinates,
+                'group_stories' => $this->post->group_stories,
                 'publish_up' => '2026-08-10 10:00:00',
             ],
             [
@@ -129,6 +135,7 @@ class TravelApiTest extends TestCase
                 'country' => $this->post->country,
                 'city' => $this->post->city,
                 'coordinates' => $this->post->coordinates,
+                'group_stories' => $this->post->group_stories,
                 'publish_up' => '2025-03-10 10:00:00',
             ],
 

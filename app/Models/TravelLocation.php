@@ -19,7 +19,10 @@ class TravelLocation extends Model
         'joomla_modified',
         'country',
         'city',
-        'coordinates'
+        'coordinates',
+        'group_stories',
+        'preview_image_journey',
+        'flag_country',
     ];
 
     protected $casts = [
@@ -31,6 +34,7 @@ class TravelLocation extends Model
     {
         return self::query()
             ->select(
+                'id',
                 'title',
                 'alias',
                 'introtext',
@@ -38,7 +42,10 @@ class TravelLocation extends Model
                 'images',
                 'country',
                 'city',
-                'coordinates'
+                'coordinates',
+                'group_stories',
+                'preview_image_journey',
+                'flag_country',
             )
             ->get();
     }
@@ -47,6 +54,7 @@ class TravelLocation extends Model
     {
         return self::query()
             ->select(
+                'id',
                 'title',
                 'alias',
                 'introtext',
@@ -54,7 +62,10 @@ class TravelLocation extends Model
                 'images',
                 'country',
                 'city',
-                'coordinates'
+                'coordinates',
+                'group_stories',
+                'preview_image_journey',
+                'flag_country',
             )
             ->when($year, function ($query) use ($year) {
                 $query->where(
