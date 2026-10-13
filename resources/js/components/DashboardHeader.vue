@@ -2,8 +2,7 @@
     <!-- Шапка -->
     <header class="header">
       <div class="logo">
-        <div class="logo-mark">M</div>
-        <span>Макс пишет</span>
+      <img src="https://maxwrites.ru/images/logo.png">
       </div>
 
       <nav class="navigation">

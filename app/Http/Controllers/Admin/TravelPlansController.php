@@ -45,7 +45,7 @@ class TravelPlansController extends Controller
 
         return redirect()
             ->route('admin.travel-plans.index')
-            ->with('succesы', 'Поездка создана');
+            ->with('success', 'Поездка создана');
     }
 
     /* Метод отвечающий за редактирование существующей записи */

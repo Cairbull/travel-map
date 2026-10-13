@@ -38,13 +38,13 @@
         ← На сайт
     </a>
 
-    <form method="POST" action="{{ route('admin.logout') }}">
+    <!-- <form method="POST" action="{{ route('admin.logout') }}">
         @csrf
 
         <button class="sidebar-logout">
             Выйти
         </button>
-    </form>
+    </form> -->
 
 </div>
 
@@ -67,7 +67,7 @@
                 </div>
             @endif
 
-            @if($errors->any())
+            <!-- @if($errors->any())
                 <div class="admin-alert admin-alert-error">
                     <strong>Проверьте данные:</strong>
 
@@ -77,7 +77,7 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+            @endif -->
 
             @yield('content')
 

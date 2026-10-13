@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Dashboard from "../components/Dashboard.vue";
 import Calendar from "../components/Calendar.vue";
-import Map from "../components/Map.vue";
-import Journeys from "../components/Journeys.vue";
-import PlansJourneys from "../components/PlansJourneys.vue";
+import Dashboard from "../components/Dashboard.vue";
 import FinishJourneys from "../components/FinishJourneys.vue";
 import Journey from "../components/Journey.vue";
+import Journeys from "../components/Journeys.vue";
+import Map from "../components/Map.vue";
+import PlansJourneys from "../components/PlansJourneys.vue";
 
 const routes = [
 
